@@ -53,10 +53,6 @@ for i from 1 to number_files
             Filter (pre-emphasis)... 50
             To Spectrum (fft)
 
-            spectrum$ = selected$ ("Spectrum")
-
-            Copy... spectrum_copy$
-
             To Ltas (1-to-1)
 
             numbins = Get number of bins
@@ -97,17 +93,22 @@ for i from 1 to number_files
                 endif
             endfor
 
-            select Spectrum 'spectrum$'
             # calculate fm, am, ad
             # for ease of compulation, am is approximated as the amplitude of nearest bin from fm
             if ampsum > 0
                 fm = freqsum / ampsum
                 bin_width = Get bin width
                 bin_number_m = round(fm / bin_width)
-                real_m = Get real value in bin: bin_number_m
-                imag_m = Get imaginary value in bin: bin_number_m
-                am = sqrt(real_m^2 + imag_m^2)
-                ad = am - amin      
+                if bin_number_m >= 1 and bin_number_m <= numbins
+                    am = Get value in bin... bin_number_m
+                else
+                    if bin_number_m < 1
+                        am = Get value in bin... 1
+                    else
+                        am = Get value in bin... numbins
+                    endif
+                endif
+                ad = am - amin
                 fileappend "'directory$'fricative-log.txt" 'object_name$''tab$''label$''tab$''fm''tab$''am''tab$''fmin''tab$''amin''tab$''ad''newline$'
             endif
         endif
