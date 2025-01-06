@@ -1,4 +1,4 @@
-# praat
+# praat_scripts
 praat 스크립트 저장소 <br> <br>
 
 원하는 praat 스크립트를 찾기 힘들어서 써봤습니다. <br>
