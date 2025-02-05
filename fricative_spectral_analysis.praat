@@ -5,7 +5,7 @@
 # fmin = frequency of minimum in low-frequency band
 # amin = amplitude at fmin
 # ad = am - amin
-# This script is motivated by Will Styler's origianl script
+# This script is motivated by Will Styler's original script
 # last updated: 25.01.05. Mina Cho
 
 # Setting the directory path. The user must manually specify the path below.
